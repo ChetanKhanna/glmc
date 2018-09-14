@@ -65,6 +65,15 @@ int  glmc_vec3f_is_normalized(vec3f src)
 		return 0;
 }
 
+void glmc_vec4f_normlize(vec4f dest, vec4f src)
+{
+	float len = glmc_vec4f_length(src);
+	for(int i = 0; i < 3; i++)
+	{
+		dest[i] = src[i]/len;
+	}
+}
+
 void glmc_vec3f_add(vec3f dest, vec3f src_a, vec3f src_b)
 {
 	for(int i = 0; i < 3; i++)
