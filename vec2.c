@@ -27,35 +27,35 @@
 #include <stdio.h>
 #include <math.h>
 
-void glmc_vec2f_from_3f(vec2f dest, vec3f src)
+void inline glmc_vec2f_from_3f(vec2f dest, vec3f src)
 {
 	dest[0] = src[0];
 	dest[1] = src[1];
 }
 
-void glmc_vec2f_from_4f(vec2f dest, vec2f src)
+void inline glmc_vec2f_from_4f(vec2f dest, vec2f src)
 {
 	dest[0] = src[0];
 	dest[1] = src[1];	
 }
 
-void glmc_vec2f_copy(vec2f dest, vec2f src)
+void inline glmc_vec2f_copy(vec2f dest, vec2f src)
 {
 	dest = src;
 }
 
-float glmc_vec2f_sqrlength(vec2f vec)
+float inline glmc_vec2f_sqrlength(vec2f vec)
 {
 	return (vec[0]*vec[0] + vec[1]*vec[1]);
 }
 
-float glmc_vec2f_length(vec2f vec)
+float inline glmc_vec2f_length(vec2f vec)
 {
 	float sq_len = glmc_vec2f_sqrlength(vec);
 	return sqrt(sq_len);
 }
 
-int  glmc_vec2f_is_normalized(vec2f src)
+int  inline glmc_vec2f_is_normalized(vec2f src)
 {
 	if(glmc_vec2f_sqrlength(src) == 1)
 		return 1;
@@ -63,7 +63,7 @@ int  glmc_vec2f_is_normalized(vec2f src)
 		return 0;
 }
 
-void glmc_vec2f_normlize(vec2f dest, vec2f src)
+void inline glmc_vec2f_normlize(vec2f dest, vec2f src)
 {
 	float len = glmc_vec4f_length(src);
 	for(int i = 0; i < 2; i++)
@@ -72,7 +72,7 @@ void glmc_vec2f_normlize(vec2f dest, vec2f src)
 	}
 }
 
-void glmc_vec2f_add(vec2f dest, vec2f src_a, vec2f src_b)
+void inline glmc_vec2f_add(vec2f dest, vec2f src_a, vec2f src_b)
 {
 	for(int i = 0; i < 2; i++)
 	{
@@ -80,7 +80,7 @@ void glmc_vec2f_add(vec2f dest, vec2f src_a, vec2f src_b)
 	}
 }
 
-void glmc_vec2f_add_dest(vec2f src_dest, vec2f src_b)
+void inline glmc_vec2f_add_dest(vec2f src_dest, vec2f src_b)
 {
 	for(int i = 0; i < 2; i++)
 	{
@@ -88,7 +88,7 @@ void glmc_vec2f_add_dest(vec2f src_dest, vec2f src_b)
 	}
 }
 
-void glmc_vec2f_sub(vec2f dest, vec2f src_a, vec2f src_b)
+void inline glmc_vec2f_sub(vec2f dest, vec2f src_a, vec2f src_b)
 {
 	for(int i = 0; i < 2; i++)
 	{
@@ -96,7 +96,7 @@ void glmc_vec2f_sub(vec2f dest, vec2f src_a, vec2f src_b)
 	}	
 }
 
-void glmc_vec2f_sub_dest(vec2f src_dest, vec2f src_b)
+void inline glmc_vec2f_sub_dest(vec2f src_dest, vec2f src_b)
 {
 	for(int i = 0; i < 2; i++)
 	{
@@ -104,7 +104,7 @@ void glmc_vec2f_sub_dest(vec2f src_dest, vec2f src_b)
 	}
 }
 
-void glmc_vec2f_mul(vec2f dest, vec2f src_a, vec2f src_b)
+void inline glmc_vec2f_mul(vec2f dest, vec2f src_a, vec2f src_b)
 {
 	for(int i = 0; i < 2; i++)
 	{
@@ -112,7 +112,7 @@ void glmc_vec2f_mul(vec2f dest, vec2f src_a, vec2f src_b)
 	}	
 }
 
-void glmc_vec2f_mul_dest(vec2f src_dest, vec2f src_b)
+void inline glmc_vec2f_mul_dest(vec2f src_dest, vec2f src_b)
 {
 	for(int i = 0; i < 2; i++)
 	{
@@ -120,7 +120,7 @@ void glmc_vec2f_mul_dest(vec2f src_dest, vec2f src_b)
 	}	
 }
 
-void glmc_vec2f_mul_s(vec2f dest, vec2f src_a, float src_b)
+void inline glmc_vec2f_mul_s(vec2f dest, vec2f src_a, float src_b)
 {
 	for(int i =0; i < 2; i++)
 	{
@@ -128,7 +128,7 @@ void glmc_vec2f_mul_s(vec2f dest, vec2f src_a, float src_b)
 	}
 }
 
-void glmc_vec2f_div(vec2f dest, vec2f src_a, vec2f src_b)
+void inline glmc_vec2f_div(vec2f dest, vec2f src_a, vec2f src_b)
 {
 	for(int i = 0; i < 2; i++)
 	{
@@ -142,7 +142,7 @@ void glmc_vec2f_div(vec2f dest, vec2f src_a, vec2f src_b)
 	}
 }
 
-void glmc_vec2f_div_dest(vec2f src_dest, vec2f src_b)
+void inline glmc_vec2f_div_dest(vec2f src_dest, vec2f src_b)
 {
 	for(int i = 0; i < 2; i++)
 	{
@@ -154,7 +154,7 @@ void glmc_vec2f_div_dest(vec2f src_dest, vec2f src_b)
 	}
 }
 
-void glmc_vec2f_div_s(vec2f dest, vec2f src_a, float src_b)
+void inline glmc_vec2f_div_s(vec2f dest, vec2f src_a, float src_b)
 {
 	if(src_b == 0)
 		printf("Division by zero!\n");
@@ -167,7 +167,7 @@ void glmc_vec2f_div_s(vec2f dest, vec2f src_a, float src_b)
 	}
 }
 
-void glmc_vec2f_addadd(vec2f dest, vec2f src_a, vec2f src_b)
+void inline glmc_vec2f_addadd(vec2f dest, vec2f src_a, vec2f src_b)
 {
 	for(int i = 0; i < 2; i++)
 	{
@@ -175,14 +175,14 @@ void glmc_vec2f_addadd(vec2f dest, vec2f src_a, vec2f src_b)
 	}	
 }
 
-void glmc_vec2f_subadd(vec2f dest, vec2f src_a, vec2f src_b){
+void inline inline glmc_vec2f_subadd(vec2f dest, vec2f src_a, vec2f src_b){
 	for(int i = 0; i < 2; i++)
 	{
 		dest[i] += src_a[i] - src_b[i];
 	}	
 }
 
-void glmc_vec2f_madd(vec2f dest, vec2f src_a, vec2f src_b)
+void inline glmc_vec2f_madd(vec2f dest, vec2f src_a, vec2f src_b)
 {
 	for(int i = 0; i < 2; i++)
 	{
@@ -190,7 +190,7 @@ void glmc_vec2f_madd(vec2f dest, vec2f src_a, vec2f src_b)
 	}	
 }
 
-void glmc_vec2f_msub(vec2f dest, vec2f src_a, vec2f src_b)
+void inline glmc_vec2f_msub(vec2f dest, vec2f src_a, vec2f src_b)
 {
 	for(int i = 0; i < 2; i++)
 	{
@@ -198,7 +198,7 @@ void glmc_vec2f_msub(vec2f dest, vec2f src_a, vec2f src_b)
 	}	
 }
 
-float glmc_vec2f_dot(vec2f src_a, vec2f src_b)
+float inline glmc_vec2f_dot(vec2f src_a, vec2f src_b)
 {
 	float dot = 0.0;
 	for(int i = 0; i < 2; i++)
