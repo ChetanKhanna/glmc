@@ -34,9 +34,9 @@ typedef float vec4f[4];
 typedef float vec3f[3];
 typedef float vec2f[2];
 
-typedef float mat4f[4][4];
-typedef float mat3f[3][3];
-typedef float mat2f[2][2];
+typedef vec4f mat4f[4];
+typedef vec3f mat3f[3];
+typedef vec2f mat2f[2];
 
 // vec3f
 
