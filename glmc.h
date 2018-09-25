@@ -151,7 +151,7 @@ void inline glmc_mat3f_from_4f(mat3f dest, mat4f src);
 
 void inline glmc_mat3f_copy(mat3f dest, mat3f src);
 
-void inline glmc_mat3f_discriminant(mat3f dest, mat3f src);
+float inline glmc_mat3f_discriminant(mat3f src);
 void inline glmc_mat3f_inverse(mat3f dest, mat3f src);
 void inline glmc_mat3f_transpose(mat3f dest, mat3f src);
 
@@ -185,7 +185,7 @@ void inline glmc_mat4f_from_3f(mat4f dest, mat3f src);
 
 void inline glmc_mat4f_copy(mat4f dest, mat4f src);
 
-void inline glmc_mat4f_discriminant(mat4f dest, mat4f src);
+float inline glmc_mat4f_discriminant(mat4f src);
 void inline glmc_mat4f_inverse(mat4f dest, mat4f src);
 void inline glmc_mat4f_transpose(mat4f dest, mat4f src);
 
@@ -219,7 +219,7 @@ void inline glmc_mat2f_from_4f(mat2f dest, mat4f src);
 
 void inline glmc_mat2f_copy(mat2f dest, mat2f src);
 
-void inline glmc_mat2f_discriminant(mat2f dest, mat2f src);
+float inline glmc_mat2f_discriminant(mat2f src);
 void inline glmc_mat2f_inverse(mat2f dest, mat2f src);
 void inline glmc_mat2f_transpose(mat2f dest, mat2f src);
 
