@@ -24,7 +24,6 @@
  */
 
 #include "glmc.h"
-#include <stdio.h>
 #include <math.h>
 
 void inline glmc_vec3f_from_2f(vec3f dest, vec2f src_a, float src_b)
@@ -53,7 +52,8 @@ float inline glmc_vec3f_sqrlength(vec3f vec)
 
 float inline glmc_vec3f_length(vec3f vec)
 {
-	float sq_len = glmc_vec3f_sqrlength(vec);
+	float sq_len;
+	sq_len = glmc_vec3f_sqrlength(vec);
 	return sqrt(sq_len);
 }
 
