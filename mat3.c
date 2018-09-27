@@ -30,7 +30,7 @@ void inline glmc_mat3f_from_2f(mat3f dest, mat2f src)
 	vec3f vec;
 	vec[0] = 0;
 	vec[1] = 0;
-	vec[2] = 0;
+	vec[2] = 1.0;
 	glmc_vec3f_from_2f(dest[0], src[0], 0.0);
 	glmc_vec3f_from_2f(dest[1], src[1], 0.0);
 	glmc_vec3f_copy(dest[2], vec);
