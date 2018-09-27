@@ -132,13 +132,7 @@ void inline glmc_vec2f_div(vec2f dest, vec2f src_a, vec2f src_b)
 {
 	for(int i = 0; i < 2; i++)
 	{
-		if(src_b[i] == 0)
-		{
-			printf("Division by zero!\n");
-			break;
-		}
-		else
-			dest[i] = src_a[i] / src_b[i];
+		dest[i] = src_a[i] / src_b[i];
 	}
 }
 
@@ -146,25 +140,17 @@ void inline glmc_vec2f_div_dest(vec2f src_dest, vec2f src_b)
 {
 	for(int i = 0; i < 2; i++)
 	{
-		if(src_b[i] == 0)
-		{
-			printf("Division by zero!\n");
-			break;
-		}
+		src_dest[i] /= src_b[i];
 	}
 }
 
 void inline glmc_vec2f_div_s(vec2f dest, vec2f src_a, float src_b)
 {
-	if(src_b == 0)
-		printf("Division by zero!\n");
-	else
+	for(int i = 0; i < 2; i++)
 	{
-		for(int i = 0; i < 2; i++)
-		{
-			dest[i] = src_a[i] / src_b;
-		}
+		dest[i] = src_a[i] / src_b;
 	}
+
 }
 
 void inline glmc_vec2f_addadd(vec2f dest, vec2f src_a, vec2f src_b)
