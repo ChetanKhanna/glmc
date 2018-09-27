@@ -33,7 +33,7 @@ void inline glmc_vec2f_from_3f(vec2f dest, vec3f src)
 	dest[1] = src[1];
 }
 
-void inline glmc_vec2f_from_4f(vec2f dest, vec2f src)
+void inline glmc_vec2f_from_4f(vec2f dest, vec4f src)
 {
 	dest[0] = src[0];
 	dest[1] = src[1];	
