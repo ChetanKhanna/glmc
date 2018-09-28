@@ -166,11 +166,29 @@ inline void glmc_mat2f_normalized(mat2f dest, mat2f src)
 	glmc_mat2f_div_s(dest, src, disc);
 }
 
-inline void glmc_mat2f_scale_matrix(mat4f dest, float s_x, float s_y)
+inline void glmc_mat2f_scale(mat2f dest, vec2f src_vec)
 {
-	dest[0][0] = s_x;
+	dest[0][0] = src_vec[0];
 	dest[0][1] = 0.0;
 
 	dest[1][0] = 0.0;
-	dest[1][1] = s_y;
+	dest[1][1] = src_vec[1];
+}
+
+inline void glmc_mat2f_translate(mat2f dest, float src_vec)
+{
+	dest[0][0] = 1.0;
+	dest[0][1] = src_vec;
+
+	dest[1][0] = 0.0;
+	dest[1][1] = 1.0;
+}
+
+inline void glmc_mat2f_rotate(mat2f dest, double src_radians)
+{
+	dest[0][0] = float(cos(src_radians));
+	dest[0][1] = float(sin(src_radians));
+
+	dest[1][0] = -float(sin(src_radians));
+	dest[1][1] = float(cos(src_radians));
 }

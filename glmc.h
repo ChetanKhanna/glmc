@@ -178,7 +178,9 @@ void glmc_mat3f_subadd(mat3f dest, mat3f src_a, mat3f src_b);
 void glmc_mat3f_madd(mat3f dest, mat3f src_a, mat3f src_b);
 void glmc_mat3f_msub(mat3f dest, mat3f src_a, mat3f src_b);
 
-void glmc_mat3f_scale_matrix(mat4f dest, float s_x, float s_y, float s_z);
+void glmc_mat3f_scale(mat3f dest, vec3f src_vec);
+void glmc_mat3f_translate(mat3f dest, vec2f src_vec);
+void glmc_mat3f_rotate(mat3f dest, vec3f src_dir, double src_radians);
 
 // mat4f
 
@@ -214,7 +216,9 @@ void glmc_mat4f_subadd(mat4f dest, mat4f src_a, mat4f src_b);
 void glmc_mat4f_madd(mat4f dest, mat4f src_a, mat4f src_b);
 void glmc_mat4f_msub(mat4f dest, mat4f src_a, mat4f src_b);
 
-void glmc_mat4f_scale_matrix(mat4f dest, float s_x, float s_y, float s_z);
+void glmc_mat4f_scale(mat4f dest, vec4f src_vec);
+void glmc_mat4f_translate(mat4f dest, vec3f src_vec);
+void glmc_mat4f_rotate(mat4f dest, vec3f src_dir, double src_radians);
 
 // mat2f
 
@@ -250,7 +254,9 @@ void glmc_mat2f_subadd(mat2f dest, mat2f src_a, mat2f src_b);
 void glmc_mat2f_madd(mat2f dest, mat2f src_a, mat2f src_b);
 void glmc_mat2f_msub(mat2f dest, mat2f src_a, mat2f src_b);
 
-void glmc_mat2f_scale_matrix(mat4f dest, float s_x, float s_y);
+void glmc_mat2f_scale(mat2f dest, vec2f src_vec);
+void glmc_mat2f_translate(mat2f dest, float src_vec);
+void glmc_mat2f_rotate(mat2f dest, double src_radians);
 
 // multiplication between vec and mat
 

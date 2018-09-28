@@ -316,21 +316,68 @@ inline void glmc_mat4f_normalized(mat4f dest, mat4f src)
 	glmc_mat4f_div_s(dest, src, disc);
 }
 
-inline void glmc_mat4f_scale_matrix(mat4f dest, float s_x, float s_y, float s_z)
+inline void glmc_mat4f_scale(mat4f dest, vec4f src_vec)
 {
-	dest[0][0] = s_x;
+	dest[0][0] = src_vec[0];
 	dest[0][1] = 0.0;
 	dest[0][2] = 0.0;
 	dest[0][3] = 0.0;
 
 	dest[1][0] = 0.0;
-	dest[1][1] = s_y;
+	dest[1][1] = src_vec[1];
 	dest[1][2] = 0.0;
 	dest[1][3] = 0.0;
 
 	dest[2][0] = 0.0;
 	dest[2][1] = 0.0;
-	dest[2][2] = s_z;
+	dest[2][2] = src_vec[2];
+	dest[2][3] = 0.0;
+
+	dest[3][0] = 0.0;
+	dest[3][1] = 0.0;
+	dest[3][2] = 0.0;
+	dest[3][3] = src_vec[3];
+}
+
+inline void glmc_mat4f_translate(mat4f dest, vec3f src_vec);
+{
+	dest[0][0] = 1.0;
+	dest[0][1] = 0.0;
+	dest[0][2] = 0.0;
+	dest[0][3] = src_vec[0];
+
+	dest[1][0] = 0.0;
+	dest[1][1] = 1.0;
+	dest[1][2] = 0.0;
+	dest[1][3] = src_vec[1];
+
+	dest[2][0] = 0.0;
+	dest[2][1] = 0.0;
+	dest[2][2] = 1.0;
+	dest[2][3] = src_vec[2];
+
+	dest[3][0] = 0.0;
+	dest[3][1] = 0.0;
+	dest[3][2] = 0.0;
+	dest[3][3] = 1.0;
+}
+
+void glmc_mat4f_rotate(mat4f dest, vec3f src_dir, double src_radians)
+{
+	glmc_mat4f_normalized_dest(src_dir);
+	dest[0][0] = float(cos(src_radians)) + src_dir[0]*src_dir[0]*(1.0 - float(cos(src_radians)));
+	dest[0][1] = src_dir[0]*src_dir[1]*(1.0 - float(cos(src_radians))) + src_dir[2]*float(sin(src_radians));
+	dest[0][2] = src_dir[0]*src_dir[2]*(1.0 - float(cos(src_radians))) - src_dir[1]*float(sin(src_radians));
+	dest[0][3] = 0.0;
+
+	dest[1][0] = src_dir[0]*src_dir[1]*(1.0 - float(cos(src_radians))) - src_dir[2]*float(sin(src_radians));
+	dest[1][1] = float(cos(src_radians)) + src_dir[1]*src_dir[1]*(1.0 - float(cos(src_radians)));
+	dest[1][2] = src_dir[2]*src_dir[1]*(1.0 - float(cos(src_radians))) + src_dir[0]*float(sin(src_radians));
+	dest[1][3] = 0.0;
+
+	dest[2][0] = src_dir[2]*src_dir[0]*(1.0 - float(cos(src_radians))) + src_dir[1]*float(sin(src_radians));
+	dest[2][1] = src_dir[2]*src_dir[1]*(1.0 - float(cos(src_radians))) - src_dir[0]*float(sin(src_radians));
+	dest[2][2] = float(cos(src_radians)) + src_dir[2]*src_dir[2]*(1.0 - float(cos(src_radians)));
 	dest[2][3] = 0.0;
 
 	dest[3][0] = 0.0;
