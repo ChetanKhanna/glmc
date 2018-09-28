@@ -246,4 +246,10 @@ void glmc_mat2f_subadd(mat2f dest, mat2f src_a, mat2f src_b);
 void glmc_mat2f_madd(mat2f dest, mat2f src_a, mat2f src_b);
 void glmc_mat2f_msub(mat2f dest, mat2f src_a, mat2f src_b);
 
+// multiplication betwenn vec and mat
+
+void glmc_vec2f_mat2f_mul(vec2f dest, mat2f mat, vec2f vec);
+void glmc_vec3f_mat3f_mul(vec3f dest, mat3f mat, vec3f vec);
+void glmc_vec4f_mat4f_mul(vec4f dest, mat4f mat, vec4f vec);
+
 #endif /* _GLMC_H */
