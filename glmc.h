@@ -50,6 +50,7 @@ float glmc_vec3f_length(vec3f vec);
 
 int glmc_vec3f_is_normalized(vec3f src);
 void glmc_vec3f_normlize(vec3f dest, vec3f src);
+void glmc_vec3f_normalize_dest(vec3f src_dest);
 
 void glmc_vec3f_add(vec3f dest, vec3f src_a, vec3f src_b); // dest = src_a + src_b;
 void glmc_vec3f_add_dest(vec3f src_dest, vec3f src_b); // dest += src_a;
@@ -86,6 +87,7 @@ float glmc_vec4f_length(vec4f vec);
 
 int glmc_vec4f_is_normalized(vec4f src);
 void glmc_vec4f_normlize(vec4f dest, vec4f src);
+void glmc_vec4f_normlize_dest(vec4f src_dest);
 
 void glmc_vec4f_add(vec4f dest, vec4f src_a, vec4f src_b); // dest = src_a + src_b;
 void glmc_vec4f_add_dest(vec4f src_dest, vec4f src_b); // dest += src_a;
@@ -121,6 +123,7 @@ float glmc_vec2f_length(vec2f vec);
 
 int glmc_vec2f_is_normalized(vec2f src);
 void glmc_vec2f_normlize(vec2f dest, vec2f src);
+void glmc_vec2f_normlize_dest(vec2f src_dest);
 
 void glmc_vec2f_add(vec2f dest, vec2f src_a, vec2f src_b); // dest = src_a + src_b;
 void glmc_vec2f_add_dest(vec2f src_dest, vec2f src_b); // dest += src_a;
@@ -156,7 +159,8 @@ void glmc_mat3f_inverse(mat3f dest, mat3f src);
 void glmc_mat3f_transpose(mat3f dest, mat3f src);
 
 int glmc_mat3f_is_normalized(mat3f src);
-void glmc_mat3f_normalized(mat3f dest, mat3f src);
+void glmc_mat3f_normalize(mat3f dest, mat3f src);
+void glmc_mat3f_normalize_dest(mat3f src_dest);
 
 void glmc_mat3f_add(mat3f dest, mat3f src_a, mat3f src_b);
 void glmc_mat3f_add_dest(mat3f src_dest, mat3f src_b);
@@ -194,7 +198,8 @@ void glmc_mat4f_inverse(mat4f dest, mat4f src);
 void glmc_mat4f_transpose(mat4f dest, mat4f src);
 
 int glmc_mat4f_is_normalized(mat4f src);
-void glmc_mat4f_normalized(mat4f dest, mat4f src);
+void glmc_mat4f_normalize(mat4f dest, mat4f src);
+void glmc_mat4f_normalize_dest(mat4f src_dest);
 
 void glmc_mat4f_add(mat4f dest, mat4f src_a, mat4f src_b);
 void glmc_mat4f_add_dest(mat4f src_dest, mat4f src_b);
@@ -232,7 +237,8 @@ void glmc_mat2f_inverse(mat2f dest, mat2f src);
 void glmc_mat2f_transpose(mat2f dest, mat2f src);
 
 int glmc_mat2f_is_normalized(mat2f src);
-void glmc_mat2f_normalized(mat2f dest, mat2f src);
+void glmc_mat2f_normalize(mat2f dest, mat2f src);
+void glmc_mat2f_normalize_dest(mat2f src_dest);
 
 void glmc_mat2f_add(mat2f dest, mat2f src_a, mat2f src_b);
 void glmc_mat2f_add_dest(mat2f src_dest, mat2f src_b);

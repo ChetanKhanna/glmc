@@ -310,10 +310,17 @@ inline int glmc_mat4f_is_normalized(mat4f src)
 		return 0;
 }
 
-inline void glmc_mat4f_normalized(mat4f dest, mat4f src)
+inline void glmc_mat4f_normalize(mat4f dest, mat4f src)
 {
 	float disc = glmc_mat4f_discriminant(src);
 	glmc_mat4f_div_s(dest, src, disc);
+}
+
+inline void glmc_mat4f_normalized_dest(mat4f src_dest)
+{
+	mat4f temp;
+	glmc_mat4f_normalize(temp, src_dest);
+	glmc_mat4f_copy(src_dest, temp);
 }
 
 inline void glmc_mat4f_scale(mat4f dest, vec4f src_vec)

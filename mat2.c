@@ -160,10 +160,17 @@ inline int glmc_mat2f_is_normalized(mat2f src)
 	else
 		return 0;
 }
-inline void glmc_mat2f_normalized(mat2f dest, mat2f src)
+inline void glmc_mat2f_normalize(mat2f dest, mat2f src)
 {
 	float disc = glmc_mat2f_discriminant(src);
 	glmc_mat2f_div_s(dest, src, disc);
+}
+
+inline void glmc_mat2f_normalize_dest(mat2f src_dest)
+{
+	mat2f temp;
+	glmc_mat2f_normalize(temp, src_dest);
+	glmc_mat2f_copy(src_dest, temp);
 }
 
 inline void glmc_mat2f_scale(mat2f dest, vec2f src_vec)

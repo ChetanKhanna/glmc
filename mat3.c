@@ -190,10 +190,17 @@ inline int glmc_mat3f_is_normalized(mat3f src)
 		return 0;
 }
 
-inline void glmc_mat3f_normalized(mat3f dest, mat3f src)
+inline void glmc_mat3f_normalize(mat3f dest, mat3f src)
 {
 	float disc = glmc_mat3f_discriminant(src);
 	glmc_mat3f_div_s(dest, src, disc);
+}
+
+inline void glmc_mat3f_normalized_dest(mat3f src_dest)
+{
+	mat3f temp;
+	glmc_mat3f_normalize(temp, src_dest);
+	glmc_mat3f_copy(src_dest, temp);
 }
 
 inline void glmc_mat3f_scale(mat3f dest, vec3f src_vec)
