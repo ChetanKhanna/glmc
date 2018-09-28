@@ -178,6 +178,8 @@ void glmc_mat3f_subadd(mat3f dest, mat3f src_a, mat3f src_b);
 void glmc_mat3f_madd(mat3f dest, mat3f src_a, mat3f src_b);
 void glmc_mat3f_msub(mat3f dest, mat3f src_a, mat3f src_b);
 
+void glmc_mat3f_scale_matrix(mat4f dest, float s_x, float s_y, float s_z);
+
 // mat4f
 
 void glmc_mat4f_from_2f(mat4f dest, mat2f src);
@@ -211,6 +213,8 @@ void glmc_mat4f_subadd(mat4f dest, mat4f src_a, mat4f src_b);
 
 void glmc_mat4f_madd(mat4f dest, mat4f src_a, mat4f src_b);
 void glmc_mat4f_msub(mat4f dest, mat4f src_a, mat4f src_b);
+
+void glmc_mat4f_scale_matrix(mat4f dest, float s_x, float s_y, float s_z);
 
 // mat2f
 
@@ -246,7 +250,9 @@ void glmc_mat2f_subadd(mat2f dest, mat2f src_a, mat2f src_b);
 void glmc_mat2f_madd(mat2f dest, mat2f src_a, mat2f src_b);
 void glmc_mat2f_msub(mat2f dest, mat2f src_a, mat2f src_b);
 
-// multiplication betwenn vec and mat
+void glmc_mat2f_scale_matrix(mat4f dest, float s_x, float s_y);
+
+// multiplication between vec and mat
 
 void glmc_vec2f_mat2f_mul(vec2f dest, mat2f mat, vec2f vec);
 void glmc_vec3f_mat3f_mul(vec3f dest, mat3f mat, vec3f vec);

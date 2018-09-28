@@ -25,7 +25,7 @@
 
 #include "glmc.h"
 
-void inline glmc_mat3f_from_2f(mat3f dest, mat2f src)
+inline void glmc_mat3f_from_2f(mat3f dest, mat2f src)
 {
 	vec3f vec;
 	vec[0] = 0;
@@ -36,118 +36,118 @@ void inline glmc_mat3f_from_2f(mat3f dest, mat2f src)
 	glmc_vec3f_copy(dest[2], vec);
 }
 
-void inline glmc_mat3f_from_4f(mat3f dest, mat4f src)
+inline void glmc_mat3f_from_4f(mat3f dest, mat4f src)
 {
 	glmc_vec3f_from_4f(dest[0], src[0]);
 	glmc_vec3f_from_4f(dest[1], src[1]);
 	glmc_vec3f_from_4f(dest[2], src[2]);
 }
 
-void inline glmc_mat3f_copy(mat3f dest, mat3f src)
+inline void glmc_mat3f_copy(mat3f dest, mat3f src)
 {
 	for(int i = 0; i < 3; i++)
 		glmc_vec3f_copy(dest[i], src[i]);
 }
 
-void inline glmc_mat3f_add(mat3f dest, mat3f src_a, mat3f src_b)
+inline void glmc_mat3f_add(mat3f dest, mat3f src_a, mat3f src_b)
 {
 	glmc_vec3f_add(dest[0], src_a[0], src_b[0]);
 	glmc_vec3f_add(dest[1], src_a[1], src_b[1]);
 	glmc_vec3f_add(dest[2], src_a[2], src_b[2]);
 }
 
-void inline glmc_mat3f_add_dest(mat3f src_dest, mat3f src_b)
+inline void glmc_mat3f_add_dest(mat3f src_dest, mat3f src_b)
 {
 	glmc_vec3f_add_dest(src_dest[0], src_b[0]);
 	glmc_vec3f_add_dest(src_dest[1], src_b[1]);
 	glmc_vec3f_add_dest(src_dest[2], src_b[2]);
 }
 
-void inline glmc_mat3f_sub(mat3f dest, mat3f src_a, mat3f src_b)
+inline void glmc_mat3f_sub(mat3f dest, mat3f src_a, mat3f src_b)
 {
 	glmc_vec3f_sub(dest[0], src_a[0], src_b[0]);
 	glmc_vec3f_sub(dest[1], src_a[1], src_b[1]);
 	glmc_vec3f_sub(dest[2], src_a[2], src_b[2]);
 }
 
-void inline glmc_mat3f_sub_dest(mat3f src_dest, mat3f src_b)
+inline void glmc_mat3f_sub_dest(mat3f src_dest, mat3f src_b)
 {
 	glmc_vec3f_sub_dest(src_dest[0], src_b[0]);
 	glmc_vec3f_sub_dest(src_dest[1], src_b[1]);
 	glmc_vec3f_sub_dest(src_dest[2], src_b[2]);	
 }
 
-void inline glmc_mat3f_mul(mat3f dest, mat3f src_a, mat3f src_b)
+inline void glmc_mat3f_mul(mat3f dest, mat3f src_a, mat3f src_b)
 {
 	glmc_vec3f_mul(dest[0], src_a[0], src_b[0]);
 	glmc_vec3f_mul(dest[1], src_a[1], src_b[1]);
 	glmc_vec3f_mul(dest[2], src_a[2], src_b[2]);	
 }
 
-void inline glmc_mat3f_mul_dest(mat3f src_dest, mat3f src_b)
+inline void glmc_mat3f_mul_dest(mat3f src_dest, mat3f src_b)
 {
 	glmc_vec3f_mul_dest(src_dest[0], src_b[0]);
 	glmc_vec3f_mul_dest(src_dest[1], src_b[1]);
 	glmc_vec3f_mul_dest(src_dest[2], src_b[2]);	
 }
 
-void inline glmc_mat3f_mul_s(mat3f dest, mat3f src_a, float src_b)
+inline void glmc_mat3f_mul_s(mat3f dest, mat3f src_a, float src_b)
 {
 	glmc_vec3f_mul_s(dest[0], src_a[0], src_b);
 	glmc_vec3f_mul_s(dest[1], src_a[1], src_b);
 	glmc_vec3f_mul_s(dest[2], src_a[2], src_b);	
 }
 
-void inline glmc_mat3f_div(mat3f dest, mat3f src_a, mat3f src_b)
+inline void glmc_mat3f_div(mat3f dest, mat3f src_a, mat3f src_b)
 {
 	glmc_vec3f_div(dest[0], src_a[0], src_b[0]);
 	glmc_vec3f_div(dest[1], src_a[1], src_b[1]);
 	glmc_vec3f_div(dest[2], src_a[2], src_b[2]);	
 }
 
-void inline glmc_mat3f_div_dest(mat3f src_dest, mat3f src_b)
+inline void glmc_mat3f_div_dest(mat3f src_dest, mat3f src_b)
 {
 	glmc_vec3f_div_dest(src_dest[0], src_b[0]);
 	glmc_vec3f_div_dest(src_dest[1], src_b[1]);
 	glmc_vec3f_div_dest(src_dest[2], src_b[2]);	
 }
 
-void inline glmc_mat3f_div_s(mat3f dest, mat3f src_a, float src_b)
+inline void glmc_mat3f_div_s(mat3f dest, mat3f src_a, float src_b)
 {
 	glmc_vec3f_div_s(dest[0], src_a[0], src_b);
 	glmc_vec3f_div_s(dest[1], src_a[1], src_b);
 	glmc_vec3f_div_s(dest[2], src_a[2], src_b);	
 }
 
-void inline glmc_mat3f_addadd(mat3f dest, mat3f src_a, mat3f src_b)
+inline void glmc_mat3f_addadd(mat3f dest, mat3f src_a, mat3f src_b)
 {
 	glmc_vec3f_addadd(dest[0], src_a[0], src_b[0]);
 	glmc_vec3f_addadd(dest[1], src_a[1], src_b[1]);
 	glmc_vec3f_addadd(dest[2], src_a[2], src_b[2]);
 }
 
-void inline glmc_mat3f_subadd(mat3f dest, mat3f src_a, mat3f src_b)
+inline void glmc_mat3f_subadd(mat3f dest, mat3f src_a, mat3f src_b)
 {
 	glmc_vec3f_subadd(dest[0], src_a[0], src_b[0]);
 	glmc_vec3f_subadd(dest[1], src_a[1], src_b[1]);
 	glmc_vec3f_subadd(dest[2], src_a[2], src_b[2]);	
 }
 
-void inline glmc_mat3f_madd(mat3f dest, mat3f src_a, mat3f src_b)
+inline void glmc_mat3f_madd(mat3f dest, mat3f src_a, mat3f src_b)
 {
 	glmc_vec3f_madd(dest[0], src_a[0], src_b[0]);
 	glmc_vec3f_madd(dest[1], src_a[1], src_b[1]);
 	glmc_vec3f_madd(dest[2], src_a[2], src_b[2]);	
 }
 
-void inline glmc_mat3f_msub(mat3f dest, mat3f src_a, mat3f src_b)
+inline void glmc_mat3f_msub(mat3f dest, mat3f src_a, mat3f src_b)
 {
 	glmc_vec3f_msub(dest[0], src_a[0], src_b[0]);
 	glmc_vec3f_msub(dest[1], src_a[1], src_b[1]);
 	glmc_vec3f_msub(dest[2], src_a[2], src_b[2]);	
 }
 
-float inline glmc_mat3f_discriminant(mat3f src)
+inline float glmc_mat3f_discriminant(mat3f src)
 {
 	float e1 = src[0][0]*((src[1][1]*src[2][2]) - (src[1][2]*src[2][1]));
 	float e2 = src[1][0]*((src[0][2]*src[2][1]) - (src[0][1]*src[2][2]));
@@ -155,7 +155,7 @@ float inline glmc_mat3f_discriminant(mat3f src)
 	return (e1 + e2 + e3);
 }
 
-void inline glmc_mat3f_transpose(mat3f dest, mat3f src)
+inline void glmc_mat3f_transpose(mat3f dest, mat3f src)
 {
 	for(int i = 0; i < 3; i++)
 		dest[0][i] = src[i][0];
@@ -165,7 +165,7 @@ void inline glmc_mat3f_transpose(mat3f dest, mat3f src)
 		dest[2][i] = src[i][2];
 }
 
-void inline glmc_mat3f_inverse(mat3f dest, mat3f src)
+inline void glmc_mat3f_inverse(mat3f dest, mat3f src)
 {
 	mat3f cofac, co_trans;
 	cofac[0][0] = (src[1][1]*src[2][2]) - (src[1][2]*src[2][1]);
@@ -181,8 +181,8 @@ void inline glmc_mat3f_inverse(mat3f dest, mat3f src)
 	float disc = glmc_mat3f_discriminant(src);
 	glmc_mat3f_div_s(dest, co_trans, disc);
 }
-
-int inline glmc_mat3f_is_normalized(mat3f src)
+ 
+inline int glmc_mat3f_is_normalized(mat3f src)
 {
 	if(glmc_mat3f_discriminant(src) == 1)
 		return 1;
@@ -190,8 +190,23 @@ int inline glmc_mat3f_is_normalized(mat3f src)
 		return 0;
 }
 
-void inline glmc_mat3f_normalized(mat3f dest, mat3f src)
+inline void glmc_mat3f_normalized(mat3f dest, mat3f src)
 {
 	float disc = glmc_mat3f_discriminant(src);
 	glmc_mat3f_div_s(dest, src, disc);
+}
+
+inline void glmc_mat3f_scale_matrix(mat4f dest, float s_x, float s_y, float s_z)
+{
+	dest[0][0] = s_x;
+	dest[0][1] = 0.0;
+	dest[0][2] = 0.0;
+
+	dest[1][0] = 0.0;
+	dest[1][1] = s_y;
+	dest[1][2] = 0.0;
+
+	dest[2][0] = 0.0;
+	dest[2][1] = 0.0;
+	dest[2][2] = s_z;
 }
