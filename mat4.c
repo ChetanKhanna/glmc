@@ -351,22 +351,22 @@ inline void glmc_mat4f_translate(mat4f dest, vec3f src_vec);
 	dest[0][0] = 1.0;
 	dest[0][1] = 0.0;
 	dest[0][2] = 0.0;
-	dest[0][3] = src_vec[0];
+	dest[0][3] = 0.0;
 
 	dest[1][0] = 0.0;
 	dest[1][1] = 1.0;
 	dest[1][2] = 0.0;
-	dest[1][3] = src_vec[1];
+	dest[1][3] = 0.0;
 
 	dest[2][0] = 0.0;
 	dest[2][1] = 0.0;
 	dest[2][2] = 1.0;
-	dest[2][3] = src_vec[2];
+	dest[2][3] = 0.0;
 
-	dest[3][0] = 0.0;
-	dest[3][1] = 0.0;
-	dest[3][2] = 0.0;
-	dest[3][3] = 1.0;
+	dest[3][0] = src_vec[0];
+	dest[3][1] = src_vec[1];
+	dest[3][2] = src_vec[2];
+	dest[3][3] = 1.0;	
 }
 
 void glmc_mat4f_rotate(mat4f dest, vec3f src_dir, double src_radians)

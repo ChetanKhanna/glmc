@@ -185,9 +185,9 @@ inline void glmc_mat2f_scale(mat2f dest, vec2f src_vec)
 inline void glmc_mat2f_translate(mat2f dest, float src_vec)
 {
 	dest[0][0] = 1.0;
-	dest[0][1] = src_vec;
+	dest[0][1] = 0.0;
 
-	dest[1][0] = 0.0;
+	dest[1][0] = src_vec;
 	dest[1][1] = 1.0;
 }
 
