@@ -141,13 +141,7 @@ inline void glmc_vec3f_div(vec3f dest, vec3f src_a, vec3f src_b)
 {
 	for(int i = 0; i < 3; i++)
 	{
-		if(src_b[i] == 0)
-		{
-			printf("Division by zero!\n");
-			break;
-		}
-		else
-			dest[i] = src_a[i] / src_b[i];
+		dest[i] = src_a[i] / src_b[i];
 	}
 }
 
@@ -155,25 +149,17 @@ inline void glmc_vec3f_div_dest(vec3f src_dest, vec3f src_b)
 {
 	for(int i = 0; i < 3; i++)
 	{
-		if(src_b[i] == 0)
-		{
-			printf("Division by zero!\n");
-			break;
-		}
+		src_dest[i] /= src_b;
 	}
 }
 
 inline void glmc_vec3f_div_s(vec3f dest, vec3f src_a, float src_b)
 {
-	if(src_b == 0)
-		printf("Division by zero!\n");
-	else
+	for(int i = 0; i < 3; i++)
 	{
-		for(int i = 0; i < 3; i++)
-		{
-			dest[i] = src_a[i] / src_b;
-		}
+		dest[i] = src_a[i] / src_b;
 	}
+
 }
 
 inline void glmc_vec3f_addadd(vec3f dest, vec3f src_a, vec3f src_b)
@@ -224,3 +210,28 @@ inline void glmc_vec3f_cross(vec3f dest, vec3f src_a, vec3f src_b)
 	dest[1] = (src_a[2] * src_b[0]) - (src_a[0] * src_b[2]);
 	dest[2] = (src_a[0] * src_b[1]) - (src_a[1] * src_b[0]);
 }
+
+inline void glmc_vec3f_reflection(vec3f dest, vec3f src, vec3f src_normal)
+{
+	glmc_vec3f_normalize_dest(src_normal);
+	float factor = 2.0*(glmc_vec3f_dot(src, src_normal));
+	vec3f temp;
+	glmc_vec3f_mul_s(temp, src_normal, factor);
+	glmc_vec3f_sub(dest, src, temp);
+}
+
+inline void glmc_vec3f_refraction(vec3f dest, vec3f src, vec3f src_normal, float src_index, float dest_index)
+{
+	glmc_vec3f_normalize_dest(src_normal);
+	glmc_vec3f_normalize_dest(src);
+	vec3f cross_1, cross_2, cross_3, temp_N, temp_1, temp_2;
+	float root_factor;
+	glmc_vec3f_cross(cros_1, src_normal, src);
+	glmc_vec3f_mul_s(temp_N, src_normal, -1.0f);
+	glmc_vec3f_cross(cross_2, temp_N, src);
+	glmc_vec3f_cross(cross_3, src_normal, cross_2);
+	glmc_vec3f_mul_s(temp_1, cross_3, (src_index/dest_index));
+	root_factor = sqrt(1 - (src_index/dest_index)*(src_index/dest_index)*glmc_vec3f_dot(cros_1, cros_1));
+	glmc_vec3f_mul_s(temp_2, src_normal, root_factor);
+	glmc_vec3f_sub(dest, temp_1, temp_2);
+}	

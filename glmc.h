@@ -75,6 +75,9 @@ void glmc_vec3f_msub(vec3f dest, vec3f src_a, vec3f src_b); // dest -= src_a * s
 float glmc_vec3f_dot(vec3f src_a, vec3f src_b);
 void  glmc_vec3f_cross(vec3f dest, vec3f src_a, vec3f src_b);
 
+void glmc_vec3f_reflection(vec3f dest, vec3f src, vec3f src_normal);
+void glmc_vec3f_refraction(vec3f dest, vec3f src, vec3f src_normal, float src_index, float dest_index);
+
 // vec4f
 
 void glmc_vec4f_from_2f(vec4f dest, vec2f src_a, float src_b, float src_c);
