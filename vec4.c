@@ -205,3 +205,11 @@ inline float glmc_vec4f_dot(vec4f src_a, vec4f src_b)
 	}
 	return dot;
 }
+
+inline void glmc_vec4f_glsl_1d(float dest[], vec4f src)
+{
+	dest[0] = src[0];
+	dest[1] = src[1]; 
+	dest[2] = src[2];
+	dest[3] = src[3];
+}

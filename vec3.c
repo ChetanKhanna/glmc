@@ -235,3 +235,10 @@ inline void glmc_vec3f_refraction(vec3f dest, vec3f src, vec3f src_normal, float
 	glmc_vec3f_mul_s(temp_2, src_normal, root_factor);
 	glmc_vec3f_sub(dest, temp_1, temp_2);
 }	
+
+inline void glmc_vec3f_glsl_1d(float dest[], vec3f src)
+{
+	dest[0] = src[0];
+	dest[1] = src[1];
+	dest[2] = src[2];
+}

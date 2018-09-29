@@ -458,3 +458,26 @@ void glmc_mat4f_mat_input(mat4f dest, int flag)
 	if(flag != 0)
 		glmc_mat4f_normalize_dest(dest);
 }
+
+inline void glmc_mat4f_glsl_1d(float dest[], mat4f src)
+{
+	dest[0] = src[0][0];
+	dest[1] = src[0][1];
+	dest[2] = src[0][2];
+	dest[3] = src[0][3];
+
+	dest[4] = src[1][0];
+	dest[5] = src[1][1];
+	dest[6] = src[1][2];
+	dest[7] = src[1][3];
+
+	dest[8] = src[2][0];
+	dest[9] = src[2][1];
+	dest[10] = src[2][2];
+	dest[11] = src[2][3];
+
+	dest[12] = src[3][0];
+	dest[13] = src[3][1];
+	dest[14] = src[3][2];
+	dest[15] = src[3][3];
+}

@@ -264,3 +264,18 @@ inline void glmc_mat3f_mat_input(mat3f dest, int flag)
 	if(flag != 0)
 		glmc_mat3f_normalize_dest(dest);
 }
+
+inline void glmc_mat3f_glsl_1d(float dest[], mat3f src)
+{
+	dest[0] = src[0][0];
+	dest[1] = src[0][1];
+	dest[2] = src[0][2];
+
+	dest[3] = src[1][0];
+	dest[4] = src[1][1];
+	dest[5] = src[1][2];
+
+	dest[6] = src[2][0];
+	dest[7] = src[2][1];
+	dest[8] = src[2][2];
+}

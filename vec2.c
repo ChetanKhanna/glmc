@@ -200,3 +200,9 @@ inline float glmc_vec2f_dot(vec2f src_a, vec2f src_b)
 	}
 	return dot;
 }
+
+inline void glmc_vec2f_glsl_1d(float dest[], vec2f src)
+{
+	dest[0] = src[0];
+	dest[1] = src[1];
+}

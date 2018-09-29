@@ -215,3 +215,18 @@ inline void glmc_mat2f_mat_input(mat2f dest, int flag)
 	if(flag != 0)
 		glmc_mat2f_normalize_dest(dest);
 }
+
+inline void glmc_vec2f_glsl_1d(float dest[], vec2f src)
+{
+	dest[0] = src[0];
+	dest[1] = src[1];
+}
+
+inline void glmc_mat2f_glsl_1d(float dest[], mat2f src)
+{
+	dest[0] = src[0][0];
+	dest[1] = src[0][1];
+
+	dest[2] = src[1][0];
+	dest[3] = src[1][1];
+}
