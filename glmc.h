@@ -27,6 +27,8 @@
 #define _GLMC_H
 
 #include <stdint.h>
+#include <stdio.h>
+#include <math.h>
 
 // types
 
@@ -163,6 +165,8 @@ void glmc_mat3f_from_4f(mat3f dest, mat4f src);
 
 void glmc_mat3f_copy(mat3f dest, mat3f src);
 
+void glmc_mat3f_identity(mat3f dest);
+
 float glmc_mat3f_discriminant(mat3f src);
 void glmc_mat3f_inverse(mat3f dest, mat3f src);
 void glmc_mat3f_transpose(mat3f dest, mat3f src);
@@ -205,6 +209,8 @@ void glmc_mat4f_from_2f(mat4f dest, mat2f src);
 void glmc_mat4f_from_3f(mat4f dest, mat3f src);
 
 void glmc_mat4f_copy(mat4f dest, mat4f src);
+
+void glmc_mat4f_identity(mat4f dest);
 
 float glmc_mat4f_discriminant(mat4f src);
 void glmc_mat4f_inverse(mat4f dest, mat4f src);
@@ -255,6 +261,8 @@ void glmc_mat2f_from_3f(mat2f dest, mat3f src);
 void glmc_mat2f_from_4f(mat2f dest, mat4f src);
 
 void glmc_mat2f_copy(mat2f dest, mat2f src);
+
+void glmc_mat2f_identity(mat2f dest);
 
 float glmc_mat2f_discriminant(mat2f src);
 void glmc_mat2f_inverse(mat2f dest, mat2f src);

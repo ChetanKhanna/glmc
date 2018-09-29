@@ -24,8 +24,6 @@
  */
 
 #include "glmc.h"
-#include <stdio.h>
-#include <math.h>
 
 inline void glmc_vec2f_from_3f(vec2f dest, vec3f src)
 {
@@ -41,7 +39,8 @@ inline void glmc_vec2f_from_4f(vec2f dest, vec4f src)
 
 inline void glmc_vec2f_copy(vec2f dest, vec2f src)
 {
-	dest = src;
+	dest[0] = src[0];
+	dest[1] = src[1];
 }
 
 inline float glmc_vec2f_sqrlength(vec2f vec)
@@ -51,13 +50,12 @@ inline float glmc_vec2f_sqrlength(vec2f vec)
 
 inline float glmc_vec2f_length(vec2f vec)
 {
-	float sq_len = glmc_vec2f_sqrlength(vec);
-	return sqrt(sq_len);
+	return sqrt(glmc_vec2f_sqrlength(vec));
 }
 
 inline int  glmc_vec2f_is_normalized(vec2f src)
 {
-	if(glmc_vec2f_sqrlength(src) == 1)
+	if(glmc_vec2f_sqrlength(src) == 1.0)				
 		return 1;
 	else
 		return 0;
@@ -65,18 +63,33 @@ inline int  glmc_vec2f_is_normalized(vec2f src)
 
 inline void glmc_vec2f_normlize(vec2f dest, vec2f src)
 {
-	float len = glmc_vec4f_length(src);
-	for(int i = 0; i < 2; i++)
+	if(glmc_vec2f_is_normalized(src) == 1) 				
 	{
-		dest[i] = src[i]/len;
+		dest[0] = src[0];
+		dest[1] = src[1];
 	}
+	else
+	{
+		float len = glmc_vec4f_length(src);
+		for(int i = 0; i < 2; i++)
+		{
+			dest[i] = src[i]/len;
+		}	
+	}	
 }
 
 inline void glmc_vec2f_normlize_dest(vec2f src_dest)
 {
-	vec2f temp;
-	glmc_vec2f_normlize(temp, src_dest);
-	glmc_vec2f_copy(src_dest, temp);
+	if(glmc_vec2f_is_normalized(src_dest) == 0)
+	{
+		vec2f temp;
+		temp[0] = src_dest[0];
+		temp[1] = src_dest[1];
+		float len = glmc_vec2f_length(src_dest);
+		src_dest[0] = temp[0]/len;
+		src_dest[1] = temp[1]/len;
+	}
+	
 }
 
 inline void glmc_vec2f_add(vec2f dest, vec2f src_a, vec2f src_b)

@@ -27,116 +27,94 @@
 
 inline void glmc_mat4f_from_2f(mat4f dest, mat2f src)
 {
-	vec4f vec;
-	vec[0] = vec[1] = vec[3] = 0.0;
-	vec[2] = 1.0;
-	glmc_vec4f_from_2f(dest[0], src[0], 0.0, 0.0);
-	glmc_vec4f_from_2f(dest[1], src[1], 0.0, 0.0);
-	glmc_vec4f_copy(dest[2], vec);
-	vec[2] = 0.0;
-	vec[3] = 1.0;
-	glmc_vec4f_copy(dest[3], vec);
+	dest[0][0] = src[0][0];
+	dest[0][1] = src[0][1];
+	dest[0][2] = 0.0;
+	dest[0][3] = 0.0;
+
+	dest[1][0] = src[1][0];
+	dest[1][1] = src[1][1];
+	dest[1][2] = 0.0;
+	dest[1][3] = 0.0;
+
+	dest[2][0] = 0.0;
+	dest[2][1] = 0.0;
+	dest[2][2] = 1.0;
+	dest[2][3] = 0.0;
+
+	dest[3][0] = 0.0;
+	dest[3][1] = 0.0;
+	dest[3][2] = 0.0;
+	dest[3][3] = 1.0;
 }
 
 inline void glmc_mat4f_from_3f(mat4f dest, mat3f src)
 {
-	vec4f vec;
-	vec[0] = vec[1] = vec[2] = 0.0;
-	vec[3] = 1.0;
-	glmc_vec4f_from_3f(dest[0], src[0], 0.0);
-	glmc_vec4f_from_3f(dest[1], src[1], 0.0);
-	glmc_vec4f_from_3f(dest[2], src[2], 0.0);
-	glmc_vec4f_copy(dest[3], vec);
+	dest[0][0] = src[0][0];
+	dest[0][1] = src[0][1];
+	dest[0][2] = src[0][2];
+	dest[0][3] = 0.0;
+
+	dest[1][0] = src[1][0];
+	dest[1][1] = src[1][1];
+	dest[1][2] = src[1][2];
+	dest[1][3] = 0.0;
+
+	dest[2][0] = src[2][0];
+	dest[2][1] = src[2][1];
+	dest[2][2] = src[2][2];
+	dest[2][3] = 0.0;
+
+	dest[3][0] = 0.0;
+	dest[3][1] = 0.0;
+	dest[3][2] = 0.0;
+	dest[3][3] = 1.0;
 }
 
 inline void glmc_mat4f_copy(mat4f dest, mat4f src)
 {
-	for(int i = 0; i < 4; i++)
-		glmc_vec4f_copy(dest[i], src[i]);
+	dest[0][0] = src[0][0];
+	dest[0][1] = src[0][1];
+	dest[0][2] = src[0][2];
+	dest[0][3] = src[0][3];
+
+	dest[1][0] = src[1][0];
+	dest[1][1] = src[1][1];
+	dest[1][2] = src[1][2];
+	dest[1][3] = src[1][3];
+
+	dest[2][0] = src[2][0];
+	dest[2][1] = src[2][1];
+	dest[2][2] = src[2][2];
+	dest[2][3] = src[2][3];
+
+	dest[3][0] = src[3][0];
+	dest[3][1] = src[3][1];
+	dest[3][2] = src[3][2];
+	dest[3][3] = src[3][3];
 }
 
-inline void glmc_mat4f_add(mat4f dest, mat4f src_a, mat4f src_b)
+inline void glmc_mat4f_identity(mat4f dest)
 {
-	for(int i = 0; i < 4; i++)
-		glmc_vec4f_add(dest[i], src_a[i], src_b[i]);
-}
+	dest[0][0] = 1.0;
+	dest[0][1] = 0.0;
+	dest[0][2] = 0.0;
+	dest[0][3] = 0.0;
 
-inline void glmc_mat4f_add_dest(mat4f src_dest, mat4f src_b)
-{
-	for(int i = 0; i < 4; i++)
-		glmc_vec4f_add_dest(src_dest[i], src_b[i]);
-}
+	dest[1][0] = 0.0;
+	dest[1][1] = 1.0;
+	dest[1][2] = 0.0;
+	dest[1][3] = 0.0;
 
-inline void glmc_mat4f_sub(mat4f dest, mat4f src_a, mat4f src_b)
-{
-	for(int i = 0; i < 4; i++)
-		glmc_vec4f_sub(dest[i], src_a[i], src_b[i]);	
-}
+	dest[2][0] = 0.0;
+	dest[2][1] = 0.0;
+	dest[2][2] = 1.0;
+	dest[2][3] = 0.0;
 
-inline void glmc_mat4f_sub_dest(mat4f src_dest, mat4f src_b)
-{
-	for(int i = 0; i < 4; i++)
-		glmc_vec4f_sub_dest(src_dest[i], src_b[i]);	
-}
-
-inline void glmc_mat4f_mul(mat4f dest, mat4f src_a, mat4f src_b)
-{
-	for(int i = 0; i < 4; i++)
-		glmc_vec4f_mul(dest[i], src_a[i], src_b[i]);	
-}
-
-inline void glmc_mat4f_mul_dest(mat4f src_dest, mat4f src_b)
-{
-	for(int i = 0; i < 4; i++)
-		glmc_vec4f_mul_dest(src_dest[i], src_b[i]);	
-}
-
-inline void glmc_mat4f_mul_s(mat4f dest, mat4f src_a, float src_b)
-{
-	for(int i = 0; i < 4; i++)
-		glmc_vec4f_mul_s(dest[i], src_a[i], src_b);	
-}
-
-inline void glmc_mat4f_div(mat4f dest, mat4f src_a, mat4f src_b)
-{
-	for(int i = 0; i < 4; i++)
-		glmc_vec4f_div(dest[i], src_a[i], src_b[i]);	
-}
-
-inline void glmc_mat4f_div_dest(mat4f src_dest, mat4f src_b)
-{
-	for(int i = 0; i < 4; i++)
-		glmc_vec4f_div_dest(src_dest[i], src_b[i]);	
-}
-
-inline void glmc_mat4f_div_s(mat4f dest, mat4f src_a, float src_b)
-{
-	for(int i = 0; i < 4; i++)
-		glmc_vec4f_div_s(dest[i], src_a[i], src_b);	
-}
-
-inline void glmc_mat4f_addadd(mat4f dest, mat4f src_a, mat4f src_b)
-{
-	for(int i = 0; i < 4; i++)
-		glmc_vec4f_addadd(dest[i], src_a[i], src_b[i]);	
-}
-
-inline void glmc_mat4f_subadd(mat4f dest, mat4f src_a, mat4f src_b)
-{
-	for(int i = 0; i < 4; i++)
-		glmc_vec4f_subadd(dest[i], src_a[i], src_b[i]);	
-}
-
-inline void glmc_mat4f_madd(mat4f dest, mat4f src_a, mat4f src_b)
-{
-	for(int i = 0; i < 4; i++)
-		glmc_vec4f_madd(dest[i], src_a[i], src_b[i]);	
-}
-
-inline void glmc_mat4f_msub(mat4f dest, mat4f src_a, mat4f src_b)
-{
-	for(int i = 0; i < 4; i++)
-		glmc_vec4f_msub(dest[i], src_a[i], src_b[i]);	
+	dest[3][0] = 0.0;
+	dest[3][1] = 0.0;
+	dest[3][2] = 0.0;
+	dest[3][3] = 1.0;
 }
 
 inline float glmc_mat4f_discriminant(mat4f src)
@@ -312,8 +290,34 @@ inline int glmc_mat4f_is_normalized(mat4f src)
 
 inline void glmc_mat4f_normalize(mat4f dest, mat4f src)
 {
-	float disc = glmc_mat4f_discriminant(src);
-	glmc_mat4f_div_s(dest, src, disc);
+	if(glmc_mat4f_is_normalized(src) == 0)
+	{
+		float disc = glmc_mat4f_discriminant(src);
+		dest[0][0] = src[0][0]/disc;
+		dest[0][1] = src[0][1]/disc;
+		dest[0][2] = src[0][2]/disc;
+		dest[0][3] = src[0][3]/disc;
+
+		dest[1][0] = src[1][0]/disc;
+		dest[1][1] = src[1][1]/disc;
+		dest[1][2] = src[1][2]/disc;
+		dest[1][3] = src[1][3]/disc;
+
+		dest[2][0] = src[2][0]/disc;
+		dest[2][1] = src[2][1]/disc;
+		dest[2][2] = src[2][2]/disc;
+		dest[2][3] = src[2][3]/disc;
+
+		dest[3][0] = src[3][0]/disc;
+		dest[3][1] = src[3][1]/disc;
+		dest[3][2] = src[3][2]/disc;
+		dest[3][3] = src[3][3]/disc;
+	}
+	else
+	{
+		glmc_mat4f_copy(dest, src);
+	}	
+	
 }
 
 inline void glmc_mat4f_normalize_dest(mat4f src_dest)
@@ -321,6 +325,281 @@ inline void glmc_mat4f_normalize_dest(mat4f src_dest)
 	mat4f temp;
 	glmc_mat4f_normalize(temp, src_dest);
 	glmc_mat4f_copy(src_dest, temp);
+}
+
+
+inline void glmc_mat4f_add(mat4f dest, mat4f src_a, mat4f src_b)
+{
+	dest[0][0] = src_a[0][0] + src_b[0][0];
+	dest[0][1] = src_a[0][1] + src_b[0][1];
+	dest[0][2] = src_a[0][2] + src_b[0][2];
+	dest[0][3] = src_a[0][2] + src_b[0][3];
+
+	dest[1][0] = src_a[1][0] + src_b[1][0];
+	dest[1][1] = src_a[1][1] + src_b[1][1];
+	dest[1][2] = src_a[1][2] + src_b[1][2];
+	dest[1][3] = src_a[1][3] + src_b[1][3];
+
+	dest[2][0] = src_a[2][0] + src_b[2][0];
+	dest[2][1] = src_a[2][1] + src_b[2][1];
+	dest[2][2] = src_a[2][2] + src_b[2][2];
+	dest[2][3] = src_a[2][3] + src_b[2][3];
+
+	dest[3][0] = src_a[3][0] + src_b[3][0];
+	dest[3][1] = src_a[3][1] + src_b[3][1];
+	dest[3][2] = src_a[3][2] + src_b[3][2];
+	dest[3][3] = src_a[3][3] + src_b[3][3];
+}
+
+inline void glmc_mat4f_add_dest(mat4f src_dest, mat4f src_b)
+{
+	src_dest[0][0] += src_b[0][0];
+	src_dest[0][1] += src_b[0][1];
+	src_dest[0][2] += src_b[0][2];
+	src_dest[0][3] += src_b[0][3];
+
+	src_dest[1][0] += src_b[1][0];
+	src_dest[1][1] += src_b[1][1];
+	src_dest[1][2] += src_b[1][2];
+	src_dest[1][3] += src_b[1][3];
+
+	src_dest[2][0] += src_b[2][0];
+	src_dest[2][1] += src_b[2][1];
+	src_dest[2][2] += src_b[2][2];
+	src_dest[2][3] += src_b[2][3];
+
+	src_dest[3][0] += src_b[3][0];
+	src_dest[3][1] += src_b[3][1];
+	src_dest[3][2] += src_b[3][2];
+	src_dest[3][3] += src_b[3][3];
+}
+
+inline void glmc_mat4f_sub(mat4f dest, mat4f src_a, mat4f src_b)
+{
+	dest[0][0] = src_a[0][0] - src_b[0][0];
+	dest[0][1] = src_a[0][1] - src_b[0][1];
+	dest[0][2] = src_a[0][2] - src_b[0][2];
+	dest[0][3] = src_a[0][2] - src_b[0][3];
+
+	dest[1][0] = src_a[1][0] - src_b[1][0];
+	dest[1][1] = src_a[1][1] - src_b[1][1];
+	dest[1][2] = src_a[1][2] - src_b[1][2];
+	dest[1][3] = src_a[1][3] - src_b[1][3];
+
+	dest[2][0] = src_a[2][0] - src_b[2][0];
+	dest[2][1] = src_a[2][1] - src_b[2][1];
+	dest[2][2] = src_a[2][2] - src_b[2][2];
+	dest[2][3] = src_a[2][3] - src_b[2][3];
+
+	dest[3][0] = src_a[3][0] - src_b[3][0];
+	dest[3][1] = src_a[3][1] - src_b[3][1];
+	dest[3][2] = src_a[3][2] - src_b[3][2];
+	dest[3][3] = src_a[3][3] - src_b[3][3];	
+}
+
+inline void glmc_mat4f_sub_dest(mat4f src_dest, mat4f src_b)
+{
+	src_dest[0][0] -= src_b[0][0];
+	src_dest[0][1] -= src_b[0][1];
+	src_dest[0][2] -= src_b[0][2];
+	src_dest[0][3] -= src_b[0][3];
+
+	src_dest[1][0] -= src_b[1][0];
+	src_dest[1][1] -= src_b[1][1];
+	src_dest[1][2] -= src_b[1][2];
+	src_dest[1][3] -= src_b[1][3];
+
+	src_dest[2][0] -= src_b[2][0];
+	src_dest[2][1] -= src_b[2][1];
+	src_dest[2][2] -= src_b[2][2];
+	src_dest[2][3] -= src_b[2][3];
+
+	src_dest[3][0] -= src_b[3][0];
+	src_dest[3][1] -= src_b[3][1];
+	src_dest[3][2] -= src_b[3][2];
+	src_dest[3][3] -= src_b[3][3];	
+}
+
+inline void glmc_mat4f_mul(mat4f dest, mat4f src_a, mat4f src_b)
+{
+	dest[0][0] = src_a[0][0]*src_b[0][0] + src_a[1][0]*src_b[0][1] + src_a[2][0]*src_b[0][2] + src_a[3][0]*src_b[0][3];
+	dest[1][0] = src_a[0][0]*src_b[1][0] + src_a[1][0]*src_b[1][1] + src_a[2][0]*src_b[1][2] + src_a[3][0]*src_b[1][3];
+	dest[2][0] = src_a[0][0]*src_b[2][0] + src_a[1][0]*src_b[2][1] + src_a[2][0]*src_b[2][2] + src_a[3][0]*src_b[2][3];
+	dest[3][0] = src_a[0][0]*src_b[3][0] + src_a[1][0]*src_b[3][1] + src_a[2][0]*src_b[3][2] + src_a[3][0]*src_b[3][3];
+
+	dest[0][1] = src_a[0][1]*src_b[0][0] + src_a[1][1]*src_b[0][1] + src_a[2][1]*src_b[0][2] + src_a[3][1]*src_b[0][3];
+	dest[1][1] = src_a[0][1]*src_b[1][0] + src_a[1][1]*src_b[1][1] + src_a[2][1]*src_b[1][2] + src_a[3][1]*src_b[1][3];
+	dest[2][1] = src_a[0][1]*src_b[2][0] + src_a[1][1]*src_b[2][1] + src_a[2][1]*src_b[2][2] + src_a[3][1]*src_b[2][3];
+	dest[3][1] = src_a[0][1]*src_b[3][0] + src_a[1][1]*src_b[3][1] + src_a[2][1]*src_b[3][2] + src_a[3][1]*src_b[3][3];
+
+	dest[0][2] = src_a[0][2]*src_b[0][0] + src_a[1][2]*src_b[0][1] + src_a[2][2]*src_b[0][2] + src_a[3][2]*src_b[0][3];
+	dest[1][2] = src_a[0][2]*src_b[1][0] + src_a[1][2]*src_b[1][1] + src_a[2][2]*src_b[1][2] + src_a[3][2]*src_b[1][3];
+	dest[2][2] = src_a[0][2]*src_b[2][0] + src_a[1][2]*src_b[2][1] + src_a[2][2]*src_b[2][2] + src_a[3][2]*src_b[2][3];
+	dest[3][2] = src_a[0][2]*src_b[3][0] + src_a[1][2]*src_b[3][1] + src_a[2][2]*src_b[3][2] + src_a[3][2]*src_b[3][3];
+
+	dest[0][3] = src_a[0][3]*src_b[0][0] + src_a[1][3]*src_b[0][1] + src_a[2][3]*src_b[0][2] + src_a[3][3]*src_b[0][3];
+	dest[1][3] = src_a[0][3]*src_b[1][0] + src_a[1][3]*src_b[1][1] + src_a[2][3]*src_b[1][2] + src_a[3][3]*src_b[1][3];
+	dest[2][3] = src_a[0][3]*src_b[2][0] + src_a[1][3]*src_b[2][1] + src_a[2][3]*src_b[2][2] + src_a[3][3]*src_b[2][3];
+	dest[3][3] = src_a[0][3]*src_b[3][0] + src_a[1][3]*src_b[3][1] + src_a[2][3]*src_b[3][2] + src_a[3][3]*src_b[3][3];	
+}
+
+inline void glmc_mat4f_mul_dest(mat4f src_dest, mat4f src_b)
+{
+	mat4f temp;
+	glmc_mat4f_mul(temp, src_dest, src_b);
+	glmc_mat4f_copy(src_dest, temp);		
+}
+
+inline void glmc_mat4f_mul_s(mat4f dest, mat4f src_a, float src_b)
+{
+	dest[0][0] = src_a[0][0] * src_b;
+	dest[0][1] = src_a[0][1] * src_b;
+	dest[0][2] = src_a[0][2] * src_b;
+	dest[0][3] = src_a[0][2] * src_b;
+
+	dest[1][0] = src_a[1][0] * src_b;
+	dest[1][1] = src_a[1][1] * src_b;
+	dest[1][2] = src_a[1][2] * src_b;
+	dest[1][3] = src_a[1][3] * src_b;
+
+	dest[2][0] = src_a[2][0] * src_b;
+	dest[2][1] = src_a[2][1] * src_b;
+	dest[2][2] = src_a[2][2] * src_b;
+	dest[2][3] = src_a[2][3] * src_b;
+
+	dest[3][0] = src_a[3][0] * src_b;
+	dest[3][1] = src_a[3][1] * src_b;
+	dest[3][2] = src_a[3][2] * src_b;
+	dest[3][3] = src_a[3][3] * src_b;	
+}
+
+inline void glmc_mat4f_div(mat4f dest, mat4f src_a, mat4f src_b)
+{
+	mat4f src_b_inv; 
+	glmc_mat4f_inverse(src_b_inv, src_b);
+	glmc_mat4f_mul(dest, src_a, src_b_inv);	
+}
+
+inline void glmc_mat4f_div_dest(mat4f src_dest, mat4f src_b)
+{
+	mat4f src_b_inv; 
+	glmc_mat4f_inverse(src_b_inv, src_b);
+	glmc_mat4f_mul_dest(src_dest, src_b_inv);	
+}
+
+inline void glmc_mat4f_div_s(mat4f dest, mat4f src_a, float src_b)
+{
+	dest[0][0] = src_a[0][0] / src_b;
+	dest[0][1] = src_a[0][1] / src_b;
+	dest[0][2] = src_a[0][2] / src_b;
+	dest[0][3] = src_a[0][2] / src_b;
+
+	dest[1][0] = src_a[1][0] / src_b;
+	dest[1][1] = src_a[1][1] / src_b;
+	dest[1][2] = src_a[1][2] / src_b;
+	dest[1][3] = src_a[1][3] / src_b;
+
+	dest[2][0] = src_a[2][0] / src_b;
+	dest[2][1] = src_a[2][1] / src_b;
+	dest[2][2] = src_a[2][2] / src_b;
+	dest[2][3] = src_a[2][3] / src_b;
+
+	dest[3][0] = src_a[3][0] / src_b;
+	dest[3][1] = src_a[3][1] / src_b;
+	dest[3][2] = src_a[3][2] / src_b;
+	dest[3][3] = src_a[3][3] / src_b;	
+}
+
+inline void glmc_mat4f_addadd(mat4f dest, mat4f src_a, mat4f src_b)
+{
+	dest[0][0] += src_a[0][0] + src_b[0][0];
+	dest[0][1] += src_a[0][1] + src_b[0][1];
+	dest[0][2] += src_a[0][2] + src_b[0][2];
+	dest[0][3] += src_a[0][2] + src_b[0][3];
+
+	dest[1][0] += src_a[1][0] + src_b[1][0];
+	dest[1][1] += src_a[1][1] + src_b[1][1];
+	dest[1][2] += src_a[1][2] + src_b[1][2];
+	dest[1][3] += src_a[1][3] + src_b[1][3];
+
+	dest[2][0] += src_a[2][0] + src_b[2][0];
+	dest[2][1] += src_a[2][1] + src_b[2][1];
+	dest[2][2] += src_a[2][2] + src_b[2][2];
+	dest[2][3] += src_a[2][3] + src_b[2][3];
+
+	dest[3][0] += src_a[3][0] + src_b[3][0];
+	dest[3][1] += src_a[3][1] + src_b[3][1];
+	dest[3][2] += src_a[3][2] + src_b[3][2];
+	dest[3][3] += src_a[3][3] + src_b[3][3];	
+}
+
+inline void glmc_mat4f_subadd(mat4f dest, mat4f src_a, mat4f src_b)
+{
+	dest[0][0] += src_a[0][0] - src_b[0][0];
+	dest[0][1] += src_a[0][1] - src_b[0][1];
+	dest[0][2] += src_a[0][2] - src_b[0][2];
+	dest[0][3] += src_a[0][2] - src_b[0][3];
+
+	dest[1][0] += src_a[1][0] - src_b[1][0];
+	dest[1][1] += src_a[1][1] - src_b[1][1];
+	dest[1][2] += src_a[1][2] - src_b[1][2];
+	dest[1][3] += src_a[1][3] - src_b[1][3];
+
+	dest[2][0] += src_a[2][0] - src_b[2][0];
+	dest[2][1] += src_a[2][1] - src_b[2][1];
+	dest[2][2] += src_a[2][2] - src_b[2][2];
+	dest[2][3] += src_a[2][3] - src_b[2][3];
+
+	dest[3][0] += src_a[3][0] - src_b[3][0];
+	dest[3][1] += src_a[3][1] - src_b[3][1];
+	dest[3][2] += src_a[3][2] - src_b[3][2];
+	dest[3][3] += src_a[3][3] - src_b[3][3];
+}
+
+inline void glmc_mat4f_madd(mat4f dest, mat4f src_a, mat4f src_b)
+{
+	dest[0][0] += src_a[0][0] * src_b[0][0];
+	dest[0][1] += src_a[0][1] * src_b[0][1];
+	dest[0][2] += src_a[0][2] * src_b[0][2];
+	dest[0][3] += src_a[0][2] * src_b[0][3];
+
+	dest[1][0] += src_a[1][0] * src_b[1][0];
+	dest[1][1] += src_a[1][1] * src_b[1][1];
+	dest[1][2] += src_a[1][2] * src_b[1][2];
+	dest[1][3] += src_a[1][3] * src_b[1][3];
+
+	dest[2][0] += src_a[2][0] * src_b[2][0];
+	dest[2][1] += src_a[2][1] * src_b[2][1];
+	dest[2][2] += src_a[2][2] * src_b[2][2];
+	dest[2][3] += src_a[2][3] * src_b[2][3];
+
+	dest[3][0] += src_a[3][0] * src_b[3][0];
+	dest[3][1] += src_a[3][1] * src_b[3][1];
+	dest[3][2] += src_a[3][2] * src_b[3][2];
+	dest[3][3] += src_a[3][3] * src_b[3][3];	
+}
+
+inline void glmc_mat4f_msub(mat4f dest, mat4f src_a, mat4f src_b)
+{
+	dest[0][0] -= src_a[0][0] * src_b[0][0];
+	dest[0][1] -= src_a[0][1] * src_b[0][1];
+	dest[0][2] -= src_a[0][2] * src_b[0][2];
+	dest[0][3] -= src_a[0][2] * src_b[0][3];
+
+	dest[1][0] -= src_a[1][0] * src_b[1][0];
+	dest[1][1] -= src_a[1][1] * src_b[1][1];
+	dest[1][2] -= src_a[1][2] * src_b[1][2];
+	dest[1][3] -= src_a[1][3] * src_b[1][3];
+
+	dest[2][0] -= src_a[2][0] * src_b[2][0];
+	dest[2][1] -= src_a[2][1] * src_b[2][1];
+	dest[2][2] -= src_a[2][2] * src_b[2][2];
+	dest[2][3] -= src_a[2][3] * src_b[2][3];
+
+	dest[3][0] -= src_a[3][0] * src_b[3][0];
+	dest[3][1] -= src_a[3][1] * src_b[3][1];
+	dest[3][2] -= src_a[3][2] * src_b[3][2];
+	dest[3][3] -= src_a[3][3] * src_b[3][3];	
 }
 
 inline void glmc_mat4f_scale(mat4f dest, vec4f src_vec)
@@ -346,7 +625,7 @@ inline void glmc_mat4f_scale(mat4f dest, vec4f src_vec)
 	dest[3][3] = src_vec[3];
 }
 
-inline void glmc_mat4f_translate(mat4f dest, vec3f src_vec);
+inline void glmc_mat4f_translate(mat4f dest, vec3f src_vec)
 {
 	dest[0][0] = 1.0;
 	dest[0][1] = 0.0;
@@ -371,20 +650,23 @@ inline void glmc_mat4f_translate(mat4f dest, vec3f src_vec);
 
 void glmc_mat4f_rotate(mat4f dest, vec3f src_dir, double src_radians)
 {
-	glmc_mat4f_normalized_dest(src_dir);
-	dest[0][0] = float(cos(src_radians)) + src_dir[0]*src_dir[0]*(1.0 - float(cos(src_radians)));
-	dest[0][1] = src_dir[0]*src_dir[1]*(1.0 - float(cos(src_radians))) + src_dir[2]*float(sin(src_radians));
-	dest[0][2] = src_dir[0]*src_dir[2]*(1.0 - float(cos(src_radians))) - src_dir[1]*float(sin(src_radians));
+	glmc_vec3f_normalize_dest(src_dir);
+	float c = (cos(src_radians));
+	float s = (sin(src_radians));
+
+	dest[0][0] = c + src_dir[0]*src_dir[0]*(1.0 - c);
+	dest[0][1] = src_dir[0]*src_dir[1]*(1.0 - c) + src_dir[2]*s;
+	dest[0][2] = src_dir[0]*src_dir[2]*(1.0 - c) - src_dir[1]*s;
 	dest[0][3] = 0.0;
 
-	dest[1][0] = src_dir[0]*src_dir[1]*(1.0 - float(cos(src_radians))) - src_dir[2]*float(sin(src_radians));
-	dest[1][1] = float(cos(src_radians)) + src_dir[1]*src_dir[1]*(1.0 - float(cos(src_radians)));
-	dest[1][2] = src_dir[2]*src_dir[1]*(1.0 - float(cos(src_radians))) + src_dir[0]*float(sin(src_radians));
+	dest[1][0] = src_dir[0]*src_dir[1]*(1.0 - c) - src_dir[2]*s;
+	dest[1][1] = c + src_dir[1]*src_dir[1]*(1.0 - c);
+	dest[1][2] = src_dir[2]*src_dir[1]*(1.0 - c) + src_dir[0]*s;
 	dest[1][3] = 0.0;
 
-	dest[2][0] = src_dir[2]*src_dir[0]*(1.0 - float(cos(src_radians))) + src_dir[1]*float(sin(src_radians));
-	dest[2][1] = src_dir[2]*src_dir[1]*(1.0 - float(cos(src_radians))) - src_dir[0]*float(sin(src_radians));
-	dest[2][2] = float(cos(src_radians)) + src_dir[2]*src_dir[2]*(1.0 - float(cos(src_radians)));
+	dest[2][0] = src_dir[2]*src_dir[0]*(1.0 - c) + src_dir[1]*s;
+	dest[2][1] = src_dir[2]*src_dir[1]*(1.0 - c) - src_dir[0]*s;
+	dest[2][2] = c + src_dir[2]*src_dir[2]*(1.0 - c);
 	dest[2][3] = 0.0;
 
 	dest[3][0] = 0.0;

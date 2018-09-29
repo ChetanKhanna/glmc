@@ -24,7 +24,6 @@
  */
 
 #include "glmc.h"
-#include <math.h>
 
 inline void glmc_vec3f_from_2f(vec3f dest, vec2f src_a, float src_b)
 {
@@ -42,7 +41,9 @@ inline void glmc_vec3f_from_4f(vec3f dest, vec4f src)
 
 inline void glmc_vec3f_copy(vec3f dest, vec3f src)
 {
-	dest = src;
+	dest[0] = src[0];
+	dest[1] = src[1];
+	dest[2] = src[2];
 }
 
 inline float glmc_vec3f_sqrlength(vec3f vec)
@@ -52,14 +53,12 @@ inline float glmc_vec3f_sqrlength(vec3f vec)
 
 inline float glmc_vec3f_length(vec3f vec)
 {
-	float sq_len;
-	sq_len = glmc_vec3f_sqrlength(vec);
-	return sqrt(sq_len);
+	return sqrt(glmc_vec3f_sqrlength(vec));
 }
  
 inline int glmc_vec3f_is_normalized(vec3f src)
 {
-	if(glmc_vec3f_length(src) == 1) 
+	if(glmc_vec3f_sqrlength(src) == 1) 
 		return 1;
 	else
 		return 0;
@@ -76,9 +75,17 @@ inline void glmc_vec3f_normlize(vec3f dest, vec3f src)
 
 inline void glmc_vec3f_normalize_dest(vec3f src_dest)
 {
-	vec3f temp;
-	glmc_vec3f_normlize(temp, src_dest);
-	glmc_vec3f_copy(src_dest, temp);
+	if(glmc_vec3f_is_normalized(src_dest) == 0)
+	{
+		vec3f temp;
+		temp[0] = src_dest[0];
+		temp[1] = src_dest[1];
+		temp[2] = src_dest[2];
+		float len = glmc_vec3f_length(src_dest);
+		src_dest[0] = temp[0]/len;
+		src_dest[1] = temp[1]/len;
+		src_dest[2] = temp[2]/len;
+	}
 }
 
 inline void glmc_vec3f_add(vec3f dest, vec3f src_a, vec3f src_b)
@@ -149,7 +156,7 @@ inline void glmc_vec3f_div_dest(vec3f src_dest, vec3f src_b)
 {
 	for(int i = 0; i < 3; i++)
 	{
-		src_dest[i] /= src_b;
+		src_dest[i] /= src_b[i];
 	}
 }
 
@@ -226,12 +233,12 @@ inline void glmc_vec3f_refraction(vec3f dest, vec3f src, vec3f src_normal, float
 	glmc_vec3f_normalize_dest(src);
 	vec3f cross_1, cross_2, cross_3, temp_N, temp_1, temp_2;
 	float root_factor;
-	glmc_vec3f_cross(cros_1, src_normal, src);
+	glmc_vec3f_cross(cross_1, src_normal, src);
 	glmc_vec3f_mul_s(temp_N, src_normal, -1.0f);
 	glmc_vec3f_cross(cross_2, temp_N, src);
 	glmc_vec3f_cross(cross_3, src_normal, cross_2);
 	glmc_vec3f_mul_s(temp_1, cross_3, (src_index/dest_index));
-	root_factor = sqrt(1 - (src_index/dest_index)*(src_index/dest_index)*glmc_vec3f_dot(cros_1, cros_1));
+	root_factor = sqrt(1 - (src_index/dest_index)*(src_index/dest_index)*glmc_vec3f_dot(cross_1, cross_1));
 	glmc_vec3f_mul_s(temp_2, src_normal, root_factor);
 	glmc_vec3f_sub(dest, temp_1, temp_2);
 }	
