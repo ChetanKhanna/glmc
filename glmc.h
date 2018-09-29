@@ -225,6 +225,13 @@ void glmc_mat4f_scale(mat4f dest, vec4f src_vec);
 void glmc_mat4f_translate(mat4f dest, vec3f src_vec);
 void glmc_mat4f_rotate(mat4f dest, vec3f src_dir, double src_radians);
 
+void glmc_mat4f_ortho_projection(mat4f dest, float src_left, float src_right,
+									float src_top, float src_bottom, 
+									float src_far, float src_near);
+void glmc_mat4f_perspective_projection(mat4f dest, float src_left, float src_right,
+									float src_top, float src_bottom, 
+									float src_far, float src_near);
+
 // mat2f
 
 void glmc_mat2f_from_3f(mat2f dest, mat3f src);

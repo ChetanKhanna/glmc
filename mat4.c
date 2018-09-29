@@ -392,3 +392,53 @@ void glmc_mat4f_rotate(mat4f dest, vec3f src_dir, double src_radians)
 	dest[3][2] = 0.0;
 	dest[3][3] = 1.0;
 }
+
+inline void glmc_mat4f_ortho_projection(mat4f dest, float src_left, float src_right,
+									float src_top, float src_bottom, 
+									float src_far, float src_near)
+{
+	dest[0][0] = 2/(src_right - src_left);
+	dest[0][1] = 0.0;
+	dest[0][2] = 0.0;
+	dest[0][3] = 0.0;
+
+	dest[1][0] = 0.0;
+	dest[1][1] = 2/(src_right - src_bottom);
+	dest[1][2] = 0.0;
+	dest[1][3] = 0.0;
+
+	dest[2][0] = 0.0;
+	dest[2][1] = 0.0;
+	dest[2][2] = -2/(src_far - src_near);
+	dest[2][3] = 0.0;
+
+	dest[3][0] = -(src_right + src_left)/(src_right - src_left);
+	dest[3][1] = -(src_top + src_bottom)/(src_top - src_bottom);
+	dest[3][2] = -(src_far + src_near)/(src_far - src_near);
+	dest[3][3] = 1.0;
+}
+
+void glmc_mat4f_perspective_projection(mat4f dest, float src_left, float src_right,
+									float src_top, float src_bottom, 
+									float src_far, float src_near)
+{
+	dest[0][0] = 2/(src_right - src_left);
+	dest[0][1] = 0.0;
+	dest[0][2] = 0.0;
+	dest[0][3] = 0.0;
+
+	dest[1][0] = 0.0;
+	dest[1][1] = 2/(src_right - src_bottom);
+	dest[1][2] = 0.0;
+	dest[1][3] = 0.0;
+
+	dest[2][0] = (src_right + src_left)/(src_right - src_left);
+	dest[2][1] = (src_top + src_bottom)/(src_top - src_bottom);
+	dest[2][2] = -(src_far + src_near)/(src_far - src_near);
+	dest[2][3] = -1.0;
+
+	dest[3][0] = 0.0;
+	dest[3][1] = 0.0;
+	dest[3][2] = -(2.0 * src_far * src_near)/(src_far - src_near);
+	dest[3][3] = 0.0;
+}
