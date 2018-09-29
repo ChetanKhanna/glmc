@@ -78,6 +78,8 @@ void  glmc_vec3f_cross(vec3f dest, vec3f src_a, vec3f src_b);
 void glmc_vec3f_reflection(vec3f dest, vec3f src, vec3f src_normal);
 void glmc_vec3f_refraction(vec3f dest, vec3f src, vec3f src_normal, float src_index, float dest_index);
 
+
+
 // vec4f
 
 void glmc_vec4f_from_2f(vec4f dest, vec2f src_a, float src_b, float src_c);
@@ -189,6 +191,8 @@ void glmc_mat3f_scale(mat3f dest, vec3f src_vec);
 void glmc_mat3f_translate(mat3f dest, vec2f src_vec);
 void glmc_mat3f_rotate(mat3f dest, vec3f src_dir, double src_radians);
 
+void glmc_mat3f_mat_input(mat3f dest, int flag);
+
 // mat4f
 
 void glmc_mat4f_from_2f(mat4f dest, mat2f src);
@@ -235,6 +239,8 @@ void glmc_mat4f_perspective_projection(mat4f dest, float src_left, float src_rig
 									float src_top, float src_bottom, 
 									float src_far, float src_near);
 
+void glmc_mat4f_mat_input(mat4f dest, int flag);
+
 // mat2f
 
 void glmc_mat2f_from_3f(mat2f dest, mat3f src);
@@ -273,6 +279,8 @@ void glmc_mat2f_msub(mat2f dest, mat2f src_a, mat2f src_b);
 void glmc_mat2f_scale(mat2f dest, vec2f src_vec);
 void glmc_mat2f_translate(mat2f dest, float src_vec);
 void glmc_mat2f_rotate(mat2f dest, double src_radians);
+
+void glmc_mat2f_mat_input(mat2f dest, int flag);
 
 // multiplication between vec and mat
 

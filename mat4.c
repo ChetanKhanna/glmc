@@ -316,7 +316,7 @@ inline void glmc_mat4f_normalize(mat4f dest, mat4f src)
 	glmc_mat4f_div_s(dest, src, disc);
 }
 
-inline void glmc_mat4f_normalized_dest(mat4f src_dest)
+inline void glmc_mat4f_normalize_dest(mat4f src_dest)
 {
 	mat4f temp;
 	glmc_mat4f_normalize(temp, src_dest);
@@ -441,4 +441,20 @@ void glmc_mat4f_perspective_projection(mat4f dest, float src_left, float src_rig
 	dest[3][1] = 0.0;
 	dest[3][2] = -(2.0 * src_far * src_near)/(src_far - src_near);
 	dest[3][3] = 0.0;
+}
+
+void glmc_mat4f_mat_input(mat4f dest, int flag)
+{
+	float in;
+	for(int i = 0; i < 4; i++)
+	{
+		for(int j = 0; j < 4; j++)
+		{
+			scanf("%f", &in);
+			dest[i][j] = in;
+		}
+	}
+
+	if(flag != 0)
+		glmc_mat4f_normalize_dest(dest);
 }

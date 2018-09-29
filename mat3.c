@@ -196,7 +196,7 @@ inline void glmc_mat3f_normalize(mat3f dest, mat3f src)
 	glmc_mat3f_div_s(dest, src, disc);
 }
 
-inline void glmc_mat3f_normalized_dest(mat3f src_dest)
+inline void glmc_mat3f_normalize_dest(mat3f src_dest)
 {
 	mat3f temp;
 	glmc_mat3f_normalize(temp, src_dest);
@@ -247,4 +247,20 @@ inline void glmc_mat3f_rotate(mat3f dest, vec3f src_dir, double src_radians)
 	dest[2][0] = src_dir[2]*src_dir[0]*(1.0 - float(cos(src_radians))) + src_dir[1]*float(sin(src_radians));
 	dest[2][1] = src_dir[2]*src_dir[1]*(1.0 - float(cos(src_radians))) - src_dir[0]*float(sin(src_radians));
 	dest[2][2] = float(cos(src_radians)) + src_dir[2]*src_dir[2]*(1.0 - float(cos(src_radians)));
+}
+
+inline void glmc_mat3f_mat_input(mat3f dest, int flag)
+{	
+	float in;
+	for(int i = 0; i < 3; i++)
+	{
+		for(int j = 0; j < 3; j++)
+		{
+			scanf("%f", &in);
+			dest[i][j] = in;
+		}
+	}
+
+	if(flag != 0)
+		glmc_mat3f_normalize_dest(dest);
 }

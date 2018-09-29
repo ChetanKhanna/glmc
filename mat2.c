@@ -199,3 +199,19 @@ inline void glmc_mat2f_rotate(mat2f dest, double src_radians)
 	dest[1][0] = -float(sin(src_radians));
 	dest[1][1] = float(cos(src_radians));
 }
+
+inline void glmc_mat2f_mat_input(mat2f dest, int flag)
+{
+	float in;
+	for(int i = 0; i < 2; i++)
+	{
+		for(int j = 0; j < 2; j++)
+		{
+			scanf("%f", &in);
+			dest[i][j] = in;
+		}
+	}
+
+	if(flag != 0)
+		glmc_mat2f_normalize_dest(dest);
+}
